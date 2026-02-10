@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Long - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Archivo+Black&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Alexander Long</div>
+        <nav>
+            <ul>
+                <li><a href="#work" class="active">Work</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-title">
+            <h1 id="project-heading">James H. Miller Jr.<br>Data Book Design</h1>
+        </section>
+
+        <section class="project-info">
+            <div class="info-section">
+                <h3>Student Project</h3>
+                <p>Book Design // 2025 // Designer // In Collaboration with Ella Merkel</p>
+            </div>
+            <div class="info-section">
+                <h3>Awards</h3>
+                <p>AAF Addy Gold Award // AAF Addy Best-In-Show</p>
+            </div>
+        </section>
+
+        <div id="gallery-container">
+            <section class="content-area"></section>
+            <section class="content-area"></section>
+            <section class="content-area"></section>
+            <section class="content-area"></section>
+            <section class="content-area"></section>
+            <section class="content-area"></section>
+        </div>
+    </main>
+
+    <section class="credits-section">
+        <p>Design & Development — Alexander Long</p>
+        <p>© 2026 All Rights Reserved</p>
+    </section>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Load project data from Pages CMS–editable JSON (images + title)
+        (function loadProjectData() {
+            const container = document.getElementById('gallery-container');
+            const heading = document.getElementById('project-heading');
+            fetch('data/project.json')
+                .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+                .then(function(data) {
+                    if (data.title && heading) heading.innerHTML = data.title;
+                    if (data.sections && Array.isArray(data.sections) && container) {
+                        container.innerHTML = '';
+                        data.sections.forEach(function(section) {
+                            var el = document.createElement('section');
+                            el.className = 'content-area';
+                            if (section.image && section.image.trim()) {
+                                var img = document.createElement('img');
+                                img.src = section.image.replace(/^\//, '');
+                                img.alt = '';
+                                img.setAttribute('loading', 'lazy');
+                                el.appendChild(img);
+                            }
+                            container.appendChild(el);
+                        });
+                        if (typeof observeContentAreas === 'function') observeContentAreas();
+                    }
+                })
+                .catch(function() { /* keep default HTML */ });
+        })();
+
+        // Header show/hide on scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        const scrollThreshold = 100; // Minimum scroll before hiding header
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Only apply effect after scrolling past threshold
+            if (scrollTop > scrollThreshold) {
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down - hide header
+                    header.classList.add('header-hidden');
+                } else {
+                    // Scrolling up - show header
+                    header.classList.remove('header-hidden');
+                }
+            } else {
+                // Near top of page - always show header
+                header.classList.remove('header-hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Scroll-triggered blur animations (run after DOM ready; re-observes if gallery was rebuilt)
+        function observeContentAreas() {
+            var observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, observerOptions);
+            document.querySelectorAll('.content-area').forEach(function(area) {
+                observer.observe(area);
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', observeContentAreas);
+        } else {
+            observeContentAreas();
+        }
+    </script>
+</body>
+</html>

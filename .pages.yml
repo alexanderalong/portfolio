@@ -1,0 +1,29 @@
+# Pages CMS config – portfolio images & project data
+# Docs: https://pagescms.org/docs/configuration
+# After pushing to GitHub, sign in at https://app.pagescms.org and open this repo.
+
+media:
+  input: images
+  output: /images
+
+content:
+  - name: project
+    label: Project / Gallery
+    type: file
+    path: data/project.json
+    format: json
+    fields:
+      - name: title
+        label: Project title
+        type: string
+        description: Main heading (e.g. "James H. Miller Jr. Data Book Design")
+      - name: sections
+        label: Content areas (images)
+        type: object
+        list: true
+        description: Each item is one full-width content block. Add an image to display it.
+        fields:
+          - name: image
+            label: Image
+            type: image
+            description: Upload or choose an image for this section
