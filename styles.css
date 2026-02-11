@@ -1,5 +1,33 @@
 /* Portfolio site – main stylesheet */
 
+@font-face {
+    font-family: 'PP Pier Sans';
+    src: url('fonts/PPPierSans-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Pier Sans';
+    src: url('fonts/PPPierSans-Italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PP Pier Sans';
+    src: url('fonts/PPPierSans-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Pier Sans';
+    src: url('fonts/PPPierSans-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
 :root {
     --bg-color: #000000;
     --text-color: #ffffff;
@@ -14,7 +42,7 @@
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'PP Pier Sans', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
@@ -53,9 +81,9 @@ header.header-hidden {
 }
 
 .logo {
-    font-family: 'Sora', sans-serif;
+    font-family: 'PP Pier Sans', sans-serif;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.02em;
 }
 
@@ -119,8 +147,8 @@ main {
 }
 
 .project-title h1 {
-    font-family: 'Sora', sans-serif;
-    font-weight: 600;
+    font-family: 'PP Pier Sans', sans-serif;
+    font-weight: 400;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -150,7 +178,7 @@ main {
 
 .info-section h3 {
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -196,9 +224,9 @@ main {
 }
 
 .project-credit h2 {
-    font-family: 'Sora', sans-serif;
+    font-family: 'PP Pier Sans', sans-serif;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.05em;
     margin-bottom: 3rem;
     text-transform: none;
