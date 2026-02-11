@@ -190,7 +190,7 @@ main {
 /* Project Credit Section */
 .project-credit {
     text-align: center;
-    padding: 8rem 4rem 4rem;
+    padding: 8rem 4rem 8rem;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -295,7 +295,7 @@ main {
     }
 
     .project-credit {
-        padding: 4rem 2rem 2rem;
+        padding: 4rem 2rem 6rem;
     }
 
     .project-credit h2 {
