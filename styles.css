@@ -45,7 +45,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgb(0, 0, 0);
     animation: slideDown 0.6s ease-out;
     transition: transform 0.3s ease;
 }
