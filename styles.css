@@ -15,7 +15,7 @@
 }
 
 :root {
-    --bg-color: #000000;
+    --bg-color: #0D0D0D;
     --text-color: #ffffff;
     --text-secondary: #a0a0a0;
     --accent-color: #ffffff;
@@ -45,7 +45,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background-color: rgb(0, 0, 0);
+    background-color: #0D0D0D;
     animation: slideDown 0.6s ease-out;
     transition: transform 0.3s ease;
 }
@@ -205,22 +205,49 @@ main {
 /* Project Credit Section */
 .project-credit {
     text-align: center;
-    padding: 4rem 4rem 6rem;
+    padding: 4rem 4rem 10rem;
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+}
+
+.project-credit::before {
+    content: '■';
+    font-size: 0.6rem;
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0px;
+    height: 0px;
+    background-color: var(--text-color);
+}
+
+.project-credit::after {
+    content: '■';
+    font-size: 0.6rem;
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0px;
+    height: 0px;
+    background-color: var(--text-color);
 }
 
 .project-credit h2 {
     font-family: 'PP Neue Montreal', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.05em;
+    margin-top: 2.5rem;
     margin-bottom: 1.5rem;
     text-transform: none;
 }
 
 .project-credit .credit-list {
-    margin-bottom: 2rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
 }
 
 .project-credit .credit-list:last-child {
@@ -229,7 +256,7 @@ main {
 
 .project-credit p {
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.5;
     color: var(--text-color);
     margin: 0;
     font-weight: 400;
@@ -239,7 +266,7 @@ main {
 .credits-section {
     text-align: center;
     padding-top: 4rem;
-    padding-bottom: 6rem;
+    padding-bottom: 2rem;
     padding-left: 4rem;
     padding-right: 4rem;
 }
