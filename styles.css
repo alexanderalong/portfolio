@@ -69,7 +69,7 @@ header.header-hidden {
 .logo {
     font-family: 'PP Neue Montreal', sans-serif;
     font-size: 1.1rem;
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: -0.02em;
 }
 
@@ -87,6 +87,7 @@ nav a {
     padding-bottom: 0.25rem;
     transition: opacity 0.3s ease;
     opacity: 0.4;
+    font-weight: 700;
 }
 
 nav a::after {
@@ -228,7 +229,7 @@ main {
 }
 
 .project-credit p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 2;
     color: var(--text-color);
     margin: 0;
