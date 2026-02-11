@@ -229,7 +229,7 @@ main {
 
 .project-credit p {
     font-size: 1rem;
-    line-height: 1;
+    line-height: 1.7;
     color: var(--text-color);
     margin: 0;
     font-weight: 400;
