@@ -187,6 +187,38 @@ main {
     object-fit: cover;
 }
 
+/* Project Credit Section */
+.project-credit {
+    text-align: center;
+    padding: 8rem 4rem 4rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project-credit h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+    text-transform: none;
+}
+
+.project-credit .credit-list {
+    margin-bottom: 2rem;
+}
+
+.project-credit .credit-list:last-child {
+    margin-bottom: 0;
+}
+
+.project-credit p {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--text-color);
+    margin: 0;
+}
+
 /* Credits Section */
 .credits-section {
     text-align: center;
@@ -260,6 +292,14 @@ main {
 
     .content-area {
         aspect-ratio: 16 / 9;
+    }
+
+    .project-credit {
+        padding: 4rem 2rem 2rem;
+    }
+
+    .project-credit h2 {
+        margin-bottom: 2rem;
     }
 
     .credits-section {
