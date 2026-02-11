@@ -53,6 +53,10 @@
         </section>
     </main>
 
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">
+        <span class="theme-icon">☀</span>
+    </button>
+
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Load project data from Pages CMS–editable JSON (images + title)
         (function loadProjectData() {
@@ -124,6 +128,40 @@
         } else {
             observeContentAreas();
         }
+
+        // Theme toggle functionality
+        (function() {
+            var themeToggle = document.getElementById('theme-toggle');
+            var themeIcon = document.querySelector('.theme-icon');
+            var html = document.documentElement;
+            
+            // Check for saved theme preference or default to dark
+            var currentTheme = localStorage.getItem('theme') || 'dark';
+            
+            // Apply saved theme on load
+            if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☾';
+            } else {
+                html.removeAttribute('data-theme');
+                themeIcon.textContent = '☀';
+            }
+            
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', function() {
+                var theme = html.getAttribute('data-theme');
+                
+                if (theme === 'light') {
+                    html.removeAttribute('data-theme');
+                    themeIcon.textContent = '☀';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    html.setAttribute('data-theme', 'light');
+                    themeIcon.textContent = '☾';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        })();
     </script>
 </body>
 </html>
