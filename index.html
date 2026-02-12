@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="loading-screen">
+        <div class="loading-icon"></div>
+    </div>
+
     <header>
         <div class="logo">Alexander Long</div>
         <nav>
@@ -58,6 +62,22 @@
     </button>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Loading screen animation
+        (function() {
+            var loadingScreen = document.getElementById('loading-screen');
+            var startTime = Date.now();
+            var minLoadTime = 800; // Minimum 1.5 seconds
+            
+            window.addEventListener('load', function() {
+                var elapsed = Date.now() - startTime;
+                var remaining = Math.max(0, minLoadTime - elapsed);
+                
+                setTimeout(function() {
+                    loadingScreen.classList.add('loaded');
+                }, remaining);
+            });
+        })();
+
         // Load project data from Pages CMS–editable JSON (images + title)
         (function loadProjectData() {
             const container = document.getElementById('gallery-container');
