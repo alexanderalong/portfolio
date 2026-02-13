@@ -28,6 +28,10 @@
     --accent-color: #0D0D0D;
 }
 
+[data-theme="light"] #scroll-progress {
+    background-color: #e0e0e0;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -41,6 +45,24 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scroll Progress Indicator */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #333333;
+    z-index: 9998;
+}
+
+#scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #ff0000;
+    transition: width 0.1s ease-out;
 }
 
 /* Loading Screen */
@@ -162,6 +184,20 @@ main {
     animation: fadeIn 0.8s ease-out 0.2s backwards;
 }
 
+/* First gallery container bleeds to edge initially */
+#gallery-container {
+    margin: 0 -5rem;
+    transition: margin 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#gallery-container.scrolled {
+    margin: 0;
+}
+
+#gallery-container .content-area {
+    transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -246,6 +282,120 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Intro Section */
+.intro-section {
+    margin: 2rem 0 8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    align-items: start;
+}
+
+/* Image + Text Section (for 4th content area) */
+.image-text-section {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.image-text-image {
+    grid-column: 1;
+}
+
+.image-text-image .content-area {
+    aspect-ratio: 9 / 9; /* Taller ratio to match height of full-width 16:9 images */
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.image-text-content {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.image-text-content p {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    color: var(--text-color);
+    font-weight: 700;
+    margin: 0;
+}
+
+.intro-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ff0000;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    margin-bottom: 0rem;
+    grid-column: 1;
+}
+
+.intro-title {
+    font-family: 'PP Neue Montreal', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    grid-column: 1;
+}
+
+.intro-content {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.intro-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    font-weight: 400;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .intro-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin: 4rem 0 6rem;
+    }
+
+    .intro-label,
+    .intro-title,
+    .intro-content {
+        grid-column: 1;
+    }
+
+    .intro-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .image-text-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .image-text-image,
+    .image-text-content {
+        grid-column: 1;
+    }
+
+    .image-text-image .content-area {
+        aspect-ratio: 16 / 9; /* Back to normal ratio on mobile */
+    }
 }
 
 /* Project Credit Section */
@@ -375,6 +525,15 @@ main {
         padding: 10rem 2rem 2rem;
     }
 
+    /* First gallery container bleeds on mobile too */
+    #gallery-container {
+        margin: 0 -2rem;
+    }
+
+    #gallery-container.scrolled {
+        margin: 0;
+    }
+
     .project-info {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -402,9 +561,19 @@ main {
     #theme-toggle {
         bottom: 1.5rem;
         right: 2rem;
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+        width: 40px;
+        height: 22px;
+        border-radius: 11px;
+    }
+
+    .toggle-slider {
+        width: 14px;
+        height: 14px;
+        left: 3px;
+    }
+
+    [data-theme="light"] .toggle-slider {
+        transform: translateX(19px) translateY(-50%);
     }
 }
 
@@ -433,36 +602,35 @@ html {
     filter: blur(0);
 }
 
-/* Theme Toggle Button */
+/* Theme Toggle Switch */
 #theme-toggle {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--text-color);
+    width: 48px;
+    height: 26px;
+    border-radius: 13px;
+    border: 2px solid var(--text-color);
     background-color: var(--bg-color);
-    color: var(--text-color);
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
+    padding: 0;
     transition: all 0.3s ease;
     z-index: 999;
 }
 
-#theme-toggle:hover {
-    transform: scale(1.1);
-    border-width: 2px;
-}
-
-.theme-icon {
-    display: block;
+.toggle-slider {
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--text-color);
     transition: transform 0.3s ease;
+    display: block;
+    transform: translateY(-50%);
 }
 
-#theme-toggle:hover .theme-icon {
-    transform: rotate(20deg);
+[data-theme="light"] .toggle-slider {
+    transform: translateX(21px) translateY(-50%);
 }

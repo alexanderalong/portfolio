@@ -27,3 +27,19 @@ content:
             label: Image
             type: image
             description: Upload or choose an image for this section
+      - name: intro_label
+        label: Intro label
+        type: string
+        description: Small label above intro title (e.g. "INTRO")
+      - name: intro_title
+        label: Intro title
+        type: string
+        description: Main intro heading (e.g. "Where life gains STEAM")
+      - name: intro_content
+        label: Intro content
+        type: text
+        description: Intro paragraph text (separate multiple paragraphs with double line breaks)
+      - name: image_text_content
+        label: Text next to 4th image
+        type: text
+        description: Large text that appears to the right of the 4th image
