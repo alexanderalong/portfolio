@@ -217,7 +217,7 @@ main {
 .project-title h1 {
     font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(4rem, 4vw, 3rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
