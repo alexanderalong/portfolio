@@ -37,10 +37,7 @@
         <main>
         <!-- Intro Section -->
         <section class="intro">
-            <h1 class="name">I’m Alex, a multidisciplinary designer & photographer living in Knoxville, TN.
-                I am currently a student at the University of Tennessee, set to graduate in May 2026.
-                Although my expertise mainly lies with design & photography, I love to experiment
-                regularly with new mediums to push my creative skills.</h1>
+            <h1 class="name" id="intro-text"><strong>Alexander Long</strong> is a multidisciplinary designer & photographer creating work spanning across print, digital, and industiral experiences. Previously designing at Esri. Currently at Robin Easter Design. </h1>
         </section>
 
         <!-- Projects Grid -->
@@ -131,6 +128,34 @@
                     </div>
                 </div>
             </article>
+
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Project Seven</h3>
+                    <p class="project-description">Creative design and brand development.</p>
+                    <div class="project-tags">
+                        <span class="tag">Design</span>
+                        <span class="tag">Creative Direction</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Project Eight</h3>
+                    <p class="project-description">Innovative brand identity and visual system.</p>
+                    <div class="project-tags">
+                        <span class="tag">Brand Identity</span>
+                        <span class="tag">Web Design</span>
+                    </div>
+                </div>
+            </article>
         </section>
 
         </main>
@@ -139,7 +164,7 @@
     <footer id="site-footer">
         <div class="footer-content">
             <div class="footer-main">
-                <h2 class="footer-title">Thanks for<br>stopping by!</h2>
+                <h2 class="footer-title" id="footer-title">Thanks for<br>stopping by!</h2>
                 <div class="footer-links">
                     <div class="footer-column">
                         <h3>FOLLOW</h3>
@@ -190,6 +215,27 @@
                     loadingScreen.classList.add('loaded'); // Slides up (translateY(-100%))
                 }, remaining);
             });
+        })();
+
+        // Load homepage data from CMS-editable JSON
+        (function loadHomepageData() {
+            var introText = document.getElementById('intro-text');
+            var footerTitle = document.getElementById('footer-title');
+            
+            fetch('data/homepage.json')
+                .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+                .then(function(data) {
+                    // Update intro text (preserve bold on "Alexander Long")
+                    if (data.intro_text && introText) {
+                        introText.innerHTML = '<strong>Alexander Long</strong> ' + data.intro_text.replace(/^Alexander Long\s*/i, '');
+                    }
+                    
+                    // Update footer title
+                    if (data.footer_title && footerTitle) {
+                        footerTitle.innerHTML = data.footer_title;
+                    }
+                })
+                .catch(function() { /* keep default HTML */ });
         })();
 
         // Project link loading animation

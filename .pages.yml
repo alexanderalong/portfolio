@@ -7,6 +7,20 @@ media:
   output: /images
 
 content:
+  - name: homepage
+    label: Homepage
+    type: file
+    path: data/homepage.json
+    format: json
+    fields:
+      - name: intro_text
+        label: Intro text
+        type: text
+        description: Main intro paragraph text (appears at top of homepage)
+      - name: footer_title
+        label: Footer title
+        type: string
+        description: Footer heading (e.g. "Thanks for<br>stopping by!")
   - name: project
     label: Project / Gallery
     type: file
