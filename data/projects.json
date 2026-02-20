@@ -5,6 +5,7 @@
       "description": "A data-driven visual book exposing the environmental harm of the James H. Miller Jr. Power Plant.",
       "tags": ["Brand Identity", "Art Direction"],
       "image": "",
+      "hover_image": "",
       "link": "index.html"
     },
     {
@@ -12,6 +13,7 @@
       "description": "A brand identity for a human-centric real estate technology platform.",
       "tags": ["Information Design", "Web Design"],
       "image": "",
+      "hover_image": "",
       "link": ""
     },
     {
@@ -19,6 +21,7 @@
       "description": "Brand identity for the 370-acre urban redevelopment project in Toronto.",
       "tags": ["Brand Identity", "Environmental Design"],
       "image": "",
+      "hover_image": "",
       "link": ""
     },
     {
@@ -26,6 +29,7 @@
       "description": "Brand identity for a leading organization.",
       "tags": ["Art Direction", "Brand Strategy"],
       "image": "",
+      "hover_image": "",
       "link": ""
     },
     {
@@ -33,6 +37,7 @@
       "description": "Visual identity and brand design.",
       "tags": ["Visual Identity", "Print Design"],
       "image": "",
+      "hover_image": "",
       "link": ""
     },
     {
@@ -40,6 +45,7 @@
       "description": "Comprehensive branding and design project.",
       "tags": ["Brand Identity", "Information Design", "Digital"],
       "image": "",
+      "hover_image": "",
       "link": ""
     },
     {
@@ -47,6 +53,7 @@
       "description": "Creative design and brand development.",
       "tags": ["Design", "Creative Direction"],
       "image": "",
+      "hover_image": "",
       "link": ""
     },
     {
@@ -54,6 +61,7 @@
       "description": "Innovative brand identity and visual system.",
       "tags": ["Brand Identity", "Web Design"],
       "image": "",
+      "hover_image": "",
       "link": ""
     }
   ]

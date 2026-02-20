@@ -258,7 +258,7 @@
                             var imagePlaceholder = document.createElement('div');
                             imagePlaceholder.className = 'project-image-placeholder';
                             
-                            // Add image if provided
+                            // Add default image if provided
                             if (project.image && project.image.trim()) {
                                 var img = document.createElement('img');
                                 img.src = project.image.replace(/^\//, '');
@@ -266,7 +266,33 @@
                                 img.style.width = '100%';
                                 img.style.height = '100%';
                                 img.style.objectFit = 'cover';
+                                img.className = 'project-main-image';
                                 imagePlaceholder.appendChild(img);
+                                
+                                // Add hover image if provided
+                                if (project.hover_image && project.hover_image.trim()) {
+                                    var hoverImg = document.createElement('img');
+                                    hoverImg.src = project.hover_image.replace(/^\//, '');
+                                    hoverImg.alt = project.name || '';
+                                    hoverImg.style.width = '100%';
+                                    hoverImg.style.height = '100%';
+                                    hoverImg.style.objectFit = 'cover';
+                                    hoverImg.className = 'project-hover-image';
+                                    hoverImg.style.position = 'absolute';
+                                    hoverImg.style.top = '0';
+                                    hoverImg.style.left = '0';
+                                    hoverImg.style.opacity = '0';
+                                    hoverImg.style.transition = 'opacity 0.4s ease';
+                                    imagePlaceholder.appendChild(hoverImg);
+                                    
+                                    // Add hover event listeners
+                                    imageContainer.addEventListener('mouseenter', function() {
+                                        hoverImg.style.opacity = '1';
+                                    });
+                                    imageContainer.addEventListener('mouseleave', function() {
+                                        hoverImg.style.opacity = '0';
+                                    });
+                                }
                             }
                             
                             imageContainer.appendChild(imagePlaceholder);

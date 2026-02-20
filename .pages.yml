@@ -49,7 +49,11 @@ content:
           - name: image
             label: Project Image
             type: image
-            description: Project thumbnail/cover image
+            description: Project thumbnail/cover image (default state)
+          - name: hover_image
+            label: Hover Image
+            type: image
+            description: Image shown on hover (optional)
           - name: link
             label: Project Link
             type: string
