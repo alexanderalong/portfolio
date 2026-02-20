@@ -108,13 +108,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5rem;
+    padding: 1.5rem 5rem;
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0;
     z-index: 1000;
     background-color: var(--bg-color);
-    animation: slideDown 0.6s ease-out;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -223,7 +223,7 @@ main {
 .project-title h1 {
     font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 700;
-    font-size: clamp(4rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
@@ -327,6 +327,15 @@ main {
     margin-top: 1rem;
 }
 
+.image-text-label {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+
 .image-text-content p {
     font-size: 1.2rem;
     line-height: 1.6;
@@ -414,7 +423,7 @@ main {
 }
 
 .project-credit::before {
-    content: '■';
+    content: '●';
     font-size: 0.6rem;
     position: absolute;
     top: 2rem;
@@ -426,7 +435,7 @@ main {
 }
 
 .project-credit::after {
-    content: '■';
+    content: '●';
     font-size: 0.6rem;
     position: absolute;
     bottom: 4rem;
@@ -592,18 +601,11 @@ html {
     color: var(--text-color);
 }
 
-/* Scroll animations - blur effect */
+/* Scroll animations */
 .content-area {
     opacity: 1;
     transform: none;
     position: relative;
-    filter: blur(20px);
-    transition: filter 0.4s ease-out;
-}
-
-/* Remove blur when content area is visible */
-.content-area.visible {
-    filter: blur(0);
 }
 
 /* Theme Toggle Switch */
