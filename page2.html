@@ -345,40 +345,45 @@
                             article.appendChild(projectInfo);
                             projectsGrid.appendChild(article);
                         });
+                        
+                        // Attach loading animation to all project links
+                        attachLoadingAnimation();
                     }
                 })
                 .catch(function() { /* keep default HTML */ });
         })();
 
         // Project link loading animation
-        (function() {
-            var projectLink = document.querySelector('.project-link');
+        function attachLoadingAnimation() {
+            var projectLinks = document.querySelectorAll('.project-link');
             var loadingScreen = document.getElementById('loading-screen');
             
-            if (projectLink && loadingScreen) {
-                projectLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    var destination = this.href;
-                    
-                    // Position loading screen at bottom and make visible
-                    loadingScreen.classList.add('transition-in');
-                    loadingScreen.classList.remove('loaded');
-                    
-                    // Force reflow to ensure the transition-in class is applied
-                    loadingScreen.offsetHeight;
-                    
-                    // Animate up to cover screen
-                    setTimeout(function() {
-                        loadingScreen.classList.remove('transition-in');
-                    }, 10);
-                    
-                    // Wait for animation to complete (1.5s transition + buffer) then navigate
-                    setTimeout(function() {
-                        window.location.href = destination;
-                    }, 1600);
+            if (loadingScreen) {
+                projectLinks.forEach(function(projectLink) {
+                    projectLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var destination = this.href;
+                        
+                        // Position loading screen at bottom and make visible
+                        loadingScreen.classList.add('transition-in');
+                        loadingScreen.classList.remove('loaded');
+                        
+                        // Force reflow to ensure the transition-in class is applied
+                        loadingScreen.offsetHeight;
+                        
+                        // Animate up to cover screen
+                        setTimeout(function() {
+                            loadingScreen.classList.remove('transition-in');
+                        }, 10);
+                        
+                        // Wait for animation to complete (1.5s transition + buffer) then navigate
+                        setTimeout(function() {
+                            window.location.href = destination;
+                        }, 1600);
+                    });
                 });
             }
-        })();
+        }
 
         // Custom Cursor with smooth following
         (function() {
