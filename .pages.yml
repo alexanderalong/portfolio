@@ -21,6 +21,39 @@ content:
         label: Footer title
         type: string
         description: Footer heading (e.g. "Thanks for<br>stopping by!")
+  - name: projects
+    label: Projects Grid
+    type: file
+    path: data/projects.json
+    format: json
+    fields:
+      - name: projects
+        label: Projects
+        type: object
+        list: true
+        description: List of all projects displayed on homepage
+        fields:
+          - name: name
+            label: Project Name
+            type: string
+            description: Title of the project
+          - name: description
+            label: Description
+            type: text
+            description: Short description of the project
+          - name: tags
+            label: Tags
+            type: string
+            list: true
+            description: Project tags (e.g. "Brand Identity", "Web Design")
+          - name: image
+            label: Project Image
+            type: image
+            description: Project thumbnail/cover image
+          - name: link
+            label: Project Link
+            type: string
+            description: URL to project page (leave empty for no link)
   - name: project
     label: Project / Gallery
     type: file

@@ -41,7 +41,7 @@
         </section>
 
         <!-- Projects Grid -->
-        <section class="projects-grid">
+        <section class="projects-grid" id="projects-grid">
             <article class="project-card">
                 <a href="index.html" class="project-link">
                     <div class="project-image-container">
@@ -233,6 +233,92 @@
                     // Update footer title
                     if (data.footer_title && footerTitle) {
                         footerTitle.innerHTML = data.footer_title;
+                    }
+                })
+                .catch(function() { /* keep default HTML */ });
+        })();
+
+        // Load projects data from CMS-editable JSON
+        (function loadProjectsData() {
+            var projectsGrid = document.getElementById('projects-grid');
+            
+            fetch('data/projects.json')
+                .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+                .then(function(data) {
+                    if (data.projects && Array.isArray(data.projects) && projectsGrid) {
+                        projectsGrid.innerHTML = '';
+                        
+                        data.projects.forEach(function(project) {
+                            var article = document.createElement('article');
+                            article.className = 'project-card';
+                            
+                            var imageContainer = document.createElement('div');
+                            imageContainer.className = 'project-image-container';
+                            
+                            var imagePlaceholder = document.createElement('div');
+                            imagePlaceholder.className = 'project-image-placeholder';
+                            
+                            // Add image if provided
+                            if (project.image && project.image.trim()) {
+                                var img = document.createElement('img');
+                                img.src = project.image.replace(/^\//, '');
+                                img.alt = project.name || '';
+                                img.style.width = '100%';
+                                img.style.height = '100%';
+                                img.style.objectFit = 'cover';
+                                imagePlaceholder.appendChild(img);
+                            }
+                            
+                            imageContainer.appendChild(imagePlaceholder);
+                            
+                            // Wrap in link if URL provided
+                            if (project.link && project.link.trim()) {
+                                var link = document.createElement('a');
+                                link.href = project.link;
+                                link.className = 'project-link';
+                                link.appendChild(imageContainer);
+                                article.appendChild(link);
+                            } else {
+                                article.appendChild(imageContainer);
+                            }
+                            
+                            // Project info
+                            var projectInfo = document.createElement('div');
+                            projectInfo.className = 'project-info';
+                            
+                            if (project.name) {
+                                var name = document.createElement('h3');
+                                name.className = 'project-name';
+                                name.textContent = project.name;
+                                projectInfo.appendChild(name);
+                            }
+                            
+                            if (project.description) {
+                                var description = document.createElement('p');
+                                description.className = 'project-description';
+                                description.textContent = project.description;
+                                projectInfo.appendChild(description);
+                            }
+                            
+                            if (project.tags && Array.isArray(project.tags) && project.tags.length > 0) {
+                                var tagsDiv = document.createElement('div');
+                                tagsDiv.className = 'project-tags';
+                                
+                                project.tags.forEach(function(tag) {
+                                    if (tag && tag.trim()) {
+                                        var tagSpan = document.createElement('span');
+                                        tagSpan.className = 'tag';
+                                        tagSpan.textContent = tag;
+                                        tagsDiv.appendChild(tagSpan);
+                                    }
+                                });
+                                
+                                projectInfo.appendChild(tagsDiv);
+                            }
+                            
+                            article.appendChild(projectInfo);
+                            projectsGrid.appendChild(article);
+                        });
                     }
                 })
                 .catch(function() { /* keep default HTML */ });

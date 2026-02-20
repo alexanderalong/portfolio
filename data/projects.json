@@ -1,0 +1,60 @@
+{
+  "projects": [
+    {
+      "name": "James H. Miller Jr. Data Book",
+      "description": "A data-driven visual book exposing the environmental harm of the James H. Miller Jr. Power Plant.",
+      "tags": ["Brand Identity", "Art Direction"],
+      "image": "",
+      "link": "index.html"
+    },
+    {
+      "name": "Amiten Lighting Co.",
+      "description": "A brand identity for a human-centric real estate technology platform.",
+      "tags": ["Information Design", "Web Design"],
+      "image": "",
+      "link": ""
+    },
+    {
+      "name": "Project Three",
+      "description": "Brand identity for the 370-acre urban redevelopment project in Toronto.",
+      "tags": ["Brand Identity", "Environmental Design"],
+      "image": "",
+      "link": ""
+    },
+    {
+      "name": "Project Four",
+      "description": "Brand identity for a leading organization.",
+      "tags": ["Art Direction", "Brand Strategy"],
+      "image": "",
+      "link": ""
+    },
+    {
+      "name": "Project Five",
+      "description": "Visual identity and brand design.",
+      "tags": ["Visual Identity", "Print Design"],
+      "image": "",
+      "link": ""
+    },
+    {
+      "name": "Project Six",
+      "description": "Comprehensive branding and design project.",
+      "tags": ["Brand Identity", "Information Design", "Digital"],
+      "image": "",
+      "link": ""
+    },
+    {
+      "name": "Project Seven",
+      "description": "Creative design and brand development.",
+      "tags": ["Design", "Creative Direction"],
+      "image": "",
+      "link": ""
+    },
+    {
+      "name": "Project Eight",
+      "description": "Innovative brand identity and visual system.",
+      "tags": ["Brand Identity", "Web Design"],
+      "image": "",
+      "link": ""
+    }
+  ]
+}
