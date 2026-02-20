@@ -3,66 +3,124 @@
     {
       "name": "James H. Miller Jr. Data Book",
       "description": "A data-driven visual book exposing the environmental harm of the James H. Miller Jr. Power Plant.",
+<<<<<<< HEAD
       "tags": ["Brand Identity", "Art Direction"],
       "image": "",
       "hover_image": "",
+=======
+      "tags": [
+        "Brand Identity",
+        "Art Direction"
+      ],
+      "image": "/images/Brand-Main-Image-V2.jpg",
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
       "link": "index.html"
     },
     {
       "name": "Amiten Lighting Co.",
       "description": "A brand identity for a human-centric real estate technology platform.",
+<<<<<<< HEAD
       "tags": ["Information Design", "Web Design"],
       "image": "",
       "hover_image": "",
       "link": ""
+=======
+      "tags": [
+        "Information Design",
+        "Web Design"
+      ]
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
     },
     {
       "name": "Project Three",
       "description": "Brand identity for the 370-acre urban redevelopment project in Toronto.",
+<<<<<<< HEAD
       "tags": ["Brand Identity", "Environmental Design"],
       "image": "",
       "hover_image": "",
       "link": ""
+=======
+      "tags": [
+        "Brand Identity",
+        "Environmental Design"
+      ]
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
     },
     {
       "name": "Project Four",
       "description": "Brand identity for a leading organization.",
+<<<<<<< HEAD
       "tags": ["Art Direction", "Brand Strategy"],
       "image": "",
       "hover_image": "",
       "link": ""
+=======
+      "tags": [
+        "Art Direction",
+        "Brand Strategy"
+      ]
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
     },
     {
       "name": "Project Five",
       "description": "Visual identity and brand design.",
+<<<<<<< HEAD
       "tags": ["Visual Identity", "Print Design"],
       "image": "",
       "hover_image": "",
       "link": ""
+=======
+      "tags": [
+        "Visual Identity",
+        "Print Design"
+      ]
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
     },
     {
       "name": "Project Six",
       "description": "Comprehensive branding and design project.",
+<<<<<<< HEAD
       "tags": ["Brand Identity", "Information Design", "Digital"],
       "image": "",
       "hover_image": "",
       "link": ""
+=======
+      "tags": [
+        "Brand Identity",
+        "Information Design",
+        "Digital"
+      ]
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
     },
     {
       "name": "Project Seven",
       "description": "Creative design and brand development.",
+<<<<<<< HEAD
       "tags": ["Design", "Creative Direction"],
       "image": "",
       "hover_image": "",
       "link": ""
+=======
+      "tags": [
+        "Design",
+        "Creative Direction"
+      ]
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
     },
     {
       "name": "Project Eight",
       "description": "Innovative brand identity and visual system.",
+<<<<<<< HEAD
       "tags": ["Brand Identity", "Web Design"],
       "image": "",
       "hover_image": "",
       "link": ""
+=======
+      "tags": [
+        "Brand Identity",
+        "Web Design"
+      ]
+>>>>>>> cc8b579e129e4327997c786f0fa2212bf0429f2d
     }
   ]
 }
