@@ -8,7 +8,7 @@
         "Art Direction"
       ],
       "image": "/images/Brand-Main-Image-V2.jpg",
-      "hover_image": "",
+      "hover_image": "/images/Scene _8.jpg",
       "link": "index.html"
     },
     {
@@ -17,10 +17,7 @@
       "tags": [
         "Information Design",
         "Web Design"
-      ],
-      "image": "",
-      "hover_image": "",
-      "link": ""
+      ]
     },
     {
       "name": "Project Three",
@@ -28,10 +25,7 @@
       "tags": [
         "Brand Identity",
         "Environmental Design"
-      ],
-      "image": "",
-      "hover_image": "",
-      "link": ""
+      ]
     },
     {
       "name": "Project Four",
@@ -39,10 +33,7 @@
       "tags": [
         "Art Direction",
         "Brand Strategy"
-      ],
-      "image": "",
-      "hover_image": "",
-      "link": ""
+      ]
     },
     {
       "name": "Project Five",
@@ -50,10 +41,7 @@
       "tags": [
         "Visual Identity",
         "Print Design"
-      ],
-      "image": "",
-      "hover_image": "",
-      "link": ""
+      ]
     },
     {
       "name": "Project Six",
@@ -62,10 +50,7 @@
         "Brand Identity",
         "Information Design",
         "Digital"
-      ],
-      "image": "",
-      "hover_image": "",
-      "link": ""
+      ]
     },
     {
       "name": "Project Seven",
@@ -73,10 +58,7 @@
       "tags": [
         "Design",
         "Creative Direction"
-      ],
-      "image": "",
-      "hover_image": "",
-      "link": ""
+      ]
     },
     {
       "name": "Project Eight",
@@ -84,10 +66,7 @@
       "tags": [
         "Brand Identity",
         "Web Design"
-      ],
-      "image": "",
-      "hover_image": "",
-      "link": ""
+      ]
     }
   ]
 }
