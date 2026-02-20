@@ -39,6 +39,10 @@ content:
         label: Intro content
         type: text
         description: Intro paragraph text (separate multiple paragraphs with double line breaks)
+      - name: image_text_label
+        label: Image-text section label
+        type: string
+        description: Small label above text next to 4th image (e.g. "PRINTING")
       - name: image_text_content
         label: Text next to 4th image
         type: text
