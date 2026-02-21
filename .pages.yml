@@ -72,10 +72,6 @@ content:
     path: data/project.json
     format: json
     fields:
-      - name: title
-        label: Project title
-        type: string
-        description: Main heading (e.g. "James H. Miller Jr. Data Book Design")
       - name: sections
         label: Content areas (images)
         type: object
@@ -93,11 +89,27 @@ content:
       - name: intro_title
         label: Intro title
         type: string
-        description: Main intro heading (e.g. "Where life gains STEAM")
+        description: Main intro heading
       - name: intro_content
         label: Intro content
         type: text
         description: Intro paragraph text (separate multiple paragraphs with double line breaks)
+      - name: metadata_tags
+        label: Metadata tags
+        type: string
+        description: Project tags/categories (e.g. "print design, motion design, illustration")
+      - name: metadata_time
+        label: Time
+        type: string
+        description: Project timeline (e.g. "January - May 2025, 14 weeks")
+      - name: metadata_team
+        label: Team
+        type: string
+        description: Team members (e.g. "Ella Merkel & Alexander Long")
+      - name: metadata_role
+        label: Role
+        type: string
+        description: Your role in the project (e.g. "Layout, Illustration, Binding, Photography")
       - name: image_text_label
         label: Image-text section label
         type: string
