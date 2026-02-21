@@ -17,13 +17,10 @@
 
     <header>
         <nav>
-            <button id="theme-toggle" aria-label="Toggle dark/light mode">
-                <span class="toggle-slider"></span>
-            </button>
             <ul>
-                <li><a href="page3.html" class="active">Work</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="page3.html" class="active">WORK</a></li>
+                <li><a href="#more">MORE</a></li>
+                <li><a href="#about">ABOUT</a></li>
             </ul>
         </nav>
     </header>
@@ -152,11 +149,11 @@
                                 projectInfo.appendChild(name);
                             }
                             
-                            if (project.description) {
-                                var description = document.createElement('p');
-                                description.className = 'project-description';
-                                description.textContent = project.description;
-                                projectInfo.appendChild(description);
+                            if (project.tags && Array.isArray(project.tags) && project.tags.length > 0) {
+                                var tagsText = document.createElement('p');
+                                tagsText.className = 'project-tags-text';
+                                tagsText.textContent = project.tags.join(', ');
+                                projectInfo.appendChild(tagsText);
                             }
                             
                             article.appendChild(projectInfo);
@@ -239,31 +236,6 @@
             updateProgressBar();
         })();
 
-        // Theme toggle functionality
-        (function() {
-            var themeToggle = document.getElementById('theme-toggle');
-            var html = document.documentElement;
-            
-            var currentTheme = localStorage.getItem('theme') || 'dark';
-            
-            if (currentTheme === 'light') {
-                html.setAttribute('data-theme', 'light');
-            } else {
-                html.removeAttribute('data-theme');
-            }
-            
-            themeToggle.addEventListener('click', function() {
-                var theme = html.getAttribute('data-theme');
-                
-                if (theme === 'light') {
-                    html.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    html.setAttribute('data-theme', 'light');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        })();
     </script>
 </body>
 </html>
