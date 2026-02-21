@@ -190,18 +190,13 @@ main {
     animation: fadeIn 0.8s ease-out 0.2s backwards;
 }
 
-/* First gallery container bleeds to edge initially */
+/* First gallery container */
 #gallery-container {
-    margin: 0 -5rem;
-    transition: margin 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#gallery-container.scrolled {
     margin: 0;
 }
 
 #gallery-container .content-area {
-    transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    aspect-ratio: 1920 / 768;
 }
 
 @keyframes fadeIn {
@@ -295,7 +290,7 @@ main {
     margin: 2rem 0 8rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 4rem;
+    gap: 12rem;
     align-items: start;
 }
 
@@ -370,7 +365,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
 }
 
 .intro-metadata {
@@ -381,16 +376,16 @@ main {
 }
 
 .metadata-tags {
-    font-size: 1rem;
+    font-size: 0.98rem;
     line-height: 1.5;
     color: #cc4c22;
     font-weight: 400;
-    margin: 0 0 1rem 0;
+    margin: 0 0 2rem 0;
 }
 
 .metadata-item {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: var(--text-color);
     font-weight: 400;
     margin: 0;
@@ -572,12 +567,8 @@ main {
         padding: 10rem 2rem 2rem;
     }
 
-    /* First gallery container bleeds on mobile too */
+    /* First gallery container */
     #gallery-container {
-        margin: 0 -2rem;
-    }
-
-    #gallery-container.scrolled {
         margin: 0;
     }
 

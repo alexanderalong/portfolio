@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="intro-metadata">
-                <p class="metadata-tags">print design, motion design, illustration, data visualization & web design</p>
+                <p class="metadata-tags">Print design, Motion design, Illustration, Data visualization & Web design</p>
                 <p class="metadata-item"><strong>Time:</strong> January - May 2025, 14 weeks</p>
                 <p class="metadata-item"><strong>Team:</strong> Solo designer</p>
                 <p class="metadata-item"><strong>Tools:</strong> Illustrator, Photoshop, InDesign, After Effects, Procreate, HTML, CSS</p>
@@ -247,29 +247,6 @@
             lastScrollTop = scrollTop;
         });
 
-
-        // First image bleed-to-edge scroll effect
-        (function() {
-            var firstGallery = document.getElementById('gallery-container');
-            var introSection = document.querySelector('.intro-section');
-            
-            if (!firstGallery || !introSection) return;
-            
-            function handleScroll() {
-                var introTop = introSection.getBoundingClientRect().top;
-                var windowHeight = window.innerHeight;
-                
-                // Start transition when intro section is about to come into view
-                if (introTop < windowHeight * 1.2) {
-                    firstGallery.classList.add('scrolled');
-                } else {
-                    firstGallery.classList.remove('scrolled');
-                }
-            }
-            
-            window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Check initial state
-        })();
 
         // Scroll progress indicator
         (function() {
