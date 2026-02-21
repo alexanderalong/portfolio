@@ -31,8 +31,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <h1 class="hero-name" id="hero-name">Alexander Long</h1>
-            <p class="hero-bio" id="hero-bio">is a brand and experience designer creating flexible systems across print, digital, and spatial interactions. Previously designing at Esri. Currently at Robin Easter Design.</p>
+            <h1 class="hero-text" id="hero-text"><strong>Alexander Long</strong> is a brand and experience designer creating flexible systems across print, digital, and spatial interactions. Previously designing at Esri. Currently at Robin Easter Design.</h1>
         </section>
 
         <!-- Projects Grid -->
@@ -60,17 +59,13 @@
 
         // Load homepage data from CMS
         (function loadHomepageData() {
-            var heroName = document.getElementById('hero-name');
-            var heroBio = document.getElementById('hero-bio');
+            var heroText = document.getElementById('hero-text');
             
             fetch('data/homepage.json')
                 .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
                 .then(function(data) {
-                    if (data.hero_name && heroName) {
-                        heroName.textContent = data.hero_name;
-                    }
-                    if (data.hero_bio && heroBio) {
-                        heroBio.textContent = data.hero_bio;
+                    if (data.hero_name && data.hero_bio && heroText) {
+                        heroText.innerHTML = '<strong>' + data.hero_name + '</strong> ' + data.hero_bio;
                     }
                 })
                 .catch(function() { /* keep default HTML */ });
