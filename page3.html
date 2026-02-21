@@ -90,12 +90,16 @@
                             
                             // Add default image if provided
                             if (project.image && project.image.trim()) {
+                                var tempImg = new Image();
+                                tempImg.onload = function() {
+                                    var aspectRatio = this.height / this.width;
+                                    imagePlaceholder.style.aspectRatio = '1 / ' + aspectRatio;
+                                };
+                                tempImg.src = project.image.replace(/^\//, '');
+                                
                                 var img = document.createElement('img');
                                 img.src = project.image.replace(/^\//, '');
                                 img.alt = project.name || '';
-                                img.style.width = '100%';
-                                img.style.height = '100%';
-                                img.style.objectFit = 'cover';
                                 img.className = 'project-main-image';
                                 imagePlaceholder.appendChild(img);
                                 
@@ -104,13 +108,13 @@
                                     var hoverImg = document.createElement('img');
                                     hoverImg.src = project.hover_image.replace(/^\//, '');
                                     hoverImg.alt = project.name || '';
-                                    hoverImg.style.width = '100%';
-                                    hoverImg.style.height = '100%';
-                                    hoverImg.style.objectFit = 'cover';
                                     hoverImg.className = 'project-hover-image';
                                     hoverImg.style.position = 'absolute';
                                     hoverImg.style.top = '0';
                                     hoverImg.style.left = '0';
+                                    hoverImg.style.width = '100%';
+                                    hoverImg.style.height = '100%';
+                                    hoverImg.style.objectFit = 'cover';
                                     hoverImg.style.opacity = '0';
                                     hoverImg.style.transition = 'opacity 0.4s ease';
                                     imagePlaceholder.appendChild(hoverImg);
@@ -123,6 +127,8 @@
                                         hoverImg.style.opacity = '0';
                                     });
                                 }
+                            } else {
+                                imagePlaceholder.style.aspectRatio = '4 / 3';
                             }
                             
                             imageContainer.appendChild(imagePlaceholder);

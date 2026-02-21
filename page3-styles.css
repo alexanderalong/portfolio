@@ -173,8 +173,9 @@ main {
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 3rem;
-    row-gap: 5rem;
+    column-gap: 2rem;
+    row-gap: 4rem;
+    grid-auto-flow: dense;
 }
 
 .project-card {
@@ -202,15 +203,18 @@ main {
 .project-image-placeholder {
     width: 100%;
     aspect-ratio: auto;
-    min-height: 250px;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    background: #f5f5f5;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .project-image-placeholder img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
