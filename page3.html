@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Long - Portfolio</title>
+    <link rel="stylesheet" href="page3-styles.css">
+</head>
+<body>
+    <div id="scroll-progress">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <div id="loading-screen">
+        <div class="loading-icon"></div>
+    </div>
+
+    <header>
+        <nav>
+            <button id="theme-toggle" aria-label="Toggle dark/light mode">
+                <span class="toggle-slider"></span>
+            </button>
+            <ul>
+                <li><a href="page3.html" class="active">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-name" id="hero-name">Alexander Long</h1>
+            <p class="hero-bio" id="hero-bio">is a brand and experience designer creating flexible systems across print, digital, and spatial interactions. Previously designing at Esri. Currently at Robin Easter Design.</p>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects-grid" id="projects-grid">
+            <!-- Projects will be loaded dynamically from CMS -->
+        </section>
+    </main>
+
+    <script>
+        // Loading screen animation
+        (function() {
+            var loadingScreen = document.getElementById('loading-screen');
+            var startTime = Date.now();
+            var minLoadTime = 800;
+            
+            window.addEventListener('load', function() {
+                var elapsed = Date.now() - startTime;
+                var remaining = Math.max(0, minLoadTime - elapsed);
+                
+                setTimeout(function() {
+                    loadingScreen.classList.add('loaded');
+                }, remaining);
+            });
+        })();
+
+        // Load homepage data from CMS
+        (function loadHomepageData() {
+            var heroName = document.getElementById('hero-name');
+            var heroBio = document.getElementById('hero-bio');
+            
+            fetch('data/homepage.json')
+                .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+                .then(function(data) {
+                    if (data.hero_name && heroName) {
+                        heroName.textContent = data.hero_name;
+                    }
+                    if (data.hero_bio && heroBio) {
+                        heroBio.textContent = data.hero_bio;
+                    }
+                })
+                .catch(function() { /* keep default HTML */ });
+        })();
+
+        // Load projects data from CMS
+        (function loadProjectsData() {
+            var projectsGrid = document.getElementById('projects-grid');
+            
+            fetch('data/projects.json')
+                .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+                .then(function(data) {
+                    if (data.projects && Array.isArray(data.projects) && projectsGrid) {
+                        projectsGrid.innerHTML = '';
+                        
+                        data.projects.forEach(function(project) {
+                            var article = document.createElement('article');
+                            article.className = 'project-card';
+                            
+                            var imageContainer = document.createElement('div');
+                            imageContainer.className = 'project-image-container';
+                            
+                            var imagePlaceholder = document.createElement('div');
+                            imagePlaceholder.className = 'project-image-placeholder';
+                            
+                            // Add default image if provided
+                            if (project.image && project.image.trim()) {
+                                var img = document.createElement('img');
+                                img.src = project.image.replace(/^\//, '');
+                                img.alt = project.name || '';
+                                img.style.width = '100%';
+                                img.style.height = '100%';
+                                img.style.objectFit = 'cover';
+                                img.className = 'project-main-image';
+                                imagePlaceholder.appendChild(img);
+                                
+                                // Add hover image if provided
+                                if (project.hover_image && project.hover_image.trim()) {
+                                    var hoverImg = document.createElement('img');
+                                    hoverImg.src = project.hover_image.replace(/^\//, '');
+                                    hoverImg.alt = project.name || '';
+                                    hoverImg.style.width = '100%';
+                                    hoverImg.style.height = '100%';
+                                    hoverImg.style.objectFit = 'cover';
+                                    hoverImg.className = 'project-hover-image';
+                                    hoverImg.style.position = 'absolute';
+                                    hoverImg.style.top = '0';
+                                    hoverImg.style.left = '0';
+                                    hoverImg.style.opacity = '0';
+                                    hoverImg.style.transition = 'opacity 0.4s ease';
+                                    imagePlaceholder.appendChild(hoverImg);
+                                    
+                                    // Add hover event listeners
+                                    imageContainer.addEventListener('mouseenter', function() {
+                                        hoverImg.style.opacity = '1';
+                                    });
+                                    imageContainer.addEventListener('mouseleave', function() {
+                                        hoverImg.style.opacity = '0';
+                                    });
+                                }
+                            }
+                            
+                            imageContainer.appendChild(imagePlaceholder);
+                            
+                            // Wrap in link if URL provided
+                            if (project.link && project.link.trim()) {
+                                var link = document.createElement('a');
+                                link.href = project.link;
+                                link.className = 'project-link';
+                                link.appendChild(imageContainer);
+                                article.appendChild(link);
+                            } else {
+                                article.appendChild(imageContainer);
+                            }
+                            
+                            // Project info
+                            var projectInfo = document.createElement('div');
+                            projectInfo.className = 'project-info';
+                            
+                            if (project.name) {
+                                var name = document.createElement('h3');
+                                name.className = 'project-name';
+                                name.textContent = project.name;
+                                projectInfo.appendChild(name);
+                            }
+                            
+                            if (project.description) {
+                                var description = document.createElement('p');
+                                description.className = 'project-description';
+                                description.textContent = project.description;
+                                projectInfo.appendChild(description);
+                            }
+                            
+                            article.appendChild(projectInfo);
+                            projectsGrid.appendChild(article);
+                        });
+                        
+                        // Attach loading animation to all project links
+                        attachLoadingAnimation();
+                    }
+                })
+                .catch(function() { /* keep default HTML */ });
+        })();
+
+        // Project link loading animation
+        function attachLoadingAnimation() {
+            var projectLinks = document.querySelectorAll('.project-link');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (loadingScreen) {
+                projectLinks.forEach(function(projectLink) {
+                    projectLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var destination = this.href;
+                        
+                        loadingScreen.classList.add('transition-in');
+                        loadingScreen.classList.remove('loaded');
+                        loadingScreen.offsetHeight;
+                        
+                        setTimeout(function() {
+                            loadingScreen.classList.remove('transition-in');
+                        }, 10);
+                        
+                        setTimeout(function() {
+                            window.location.href = destination;
+                        }, 1600);
+                    });
+                });
+            }
+        }
+
+        // Header show/hide on scroll
+        (function() {
+            let lastScrollTop = 0;
+            const header = document.querySelector('header');
+            const scrollThreshold = 100;
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > scrollThreshold) {
+                    if (scrollTop > lastScrollTop) {
+                        header.classList.add('header-hidden');
+                    } else {
+                        header.classList.remove('header-hidden');
+                    }
+                } else {
+                    header.classList.remove('header-hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        })();
+
+        // Scroll progress indicator
+        (function() {
+            var progressBar = document.getElementById('scroll-progress-bar');
+            
+            function updateProgressBar() {
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var scrollPercent = (scrollTop / docHeight) * 100;
+                
+                if (progressBar) {
+                    progressBar.style.width = scrollPercent + '%';
+                }
+            }
+            
+            window.addEventListener('scroll', updateProgressBar);
+            window.addEventListener('resize', updateProgressBar);
+            updateProgressBar();
+        })();
+
+        // Theme toggle functionality
+        (function() {
+            var themeToggle = document.getElementById('theme-toggle');
+            var html = document.documentElement;
+            
+            var currentTheme = localStorage.getItem('theme') || 'dark';
+            
+            if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.removeAttribute('data-theme');
+            }
+            
+            themeToggle.addEventListener('click', function() {
+                var theme = html.getAttribute('data-theme');
+                
+                if (theme === 'light') {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    html.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

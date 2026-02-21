@@ -1,0 +1,356 @@
+/* Page 3 Styles - Clean Homepage */
+
+/* Font Faces */
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* CSS Variables */
+:root {
+    --bg-color: #0D0D0D;
+    --text-color: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-color: #ffffff;
+}
+
+[data-theme="light"] {
+    --bg-color: #ffffff;
+    --text-color: #0D0D0D;
+    --text-secondary: #666666;
+    --accent-color: #0D0D0D;
+}
+
+[data-theme="light"] #scroll-progress {
+    background-color: #e0e0e0;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #333333;
+    z-index: 9998;
+    transition: background-color 0.3s ease;
+}
+
+#scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #ff0000;
+    transition: width 0.1s ease-out;
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0D0D0D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+    transform: translateY(0);
+}
+
+#loading-screen.loaded {
+    transform: translateY(-100%);
+}
+
+#loading-screen.transition-in {
+    transform: translateY(100%);
+}
+
+.loading-icon {
+    font-size: 2.5rem;
+    animation: flip 1.5s ease-in-out infinite;
+}
+
+.loading-icon::before {
+    content: '⌛';
+    display: block;
+}
+
+@keyframes flip {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.5rem 5rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--bg-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    position: relative;
+    padding-bottom: 0.25rem;
+    transition: opacity 0.3s ease;
+    opacity: 0.4;
+    font-weight: 700;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    opacity: 1;
+}
+
+nav a.active {
+    opacity: 1;
+}
+
+/* Main Content */
+main {
+    padding: 10rem 5rem 4rem;
+}
+
+/* Hero Section */
+.hero {
+    max-width: 1400px;
+    margin: 0 auto 8rem;
+}
+
+.hero-name {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+}
+
+.hero-bio {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    max-width: 1200px;
+    color: var(--text-color);
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    row-gap: 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-link {
+    text-decoration: none;
+    display: block;
+}
+
+.project-image-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.project-image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.01em;
+    color: var(--text-color);
+}
+
+.project-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Theme Toggle Switch */
+#theme-toggle {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1.5px solid var(--text-color);
+    background-color: var(--bg-color);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    transition: transform 0.3s ease;
+    display: block;
+    transform: translateY(-50%);
+}
+
+[data-theme="light"] .toggle-slider {
+    transform: translateX(16px) translateY(-50%);
+}
+
+/* Selection color */
+::selection {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem 2rem;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    nav ul {
+        gap: 1.5rem;
+    }
+
+    main {
+        padding: 10rem 2rem 4rem;
+    }
+
+    .hero {
+        margin-bottom: 5rem;
+    }
+
+    .hero-name {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-bio {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    #theme-toggle {
+        width: 32px;
+        height: 18px;
+        border-radius: 9px;
+    }
+
+    .toggle-slider {
+        width: 10px;
+        height: 10px;
+        left: 2px;
+    }
+
+    [data-theme="light"] .toggle-slider {
+        transform: translateX(14px) translateY(-50%);
+    }
+}

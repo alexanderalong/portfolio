@@ -13,14 +13,22 @@ content:
     path: data/homepage.json
     format: json
     fields:
-      - name: intro_text
-        label: Intro text
-        type: text
-        description: Main intro paragraph text (appears at top of homepage)
-      - name: footer_title
-        label: Footer title
+      - name: hero_name
+        label: Hero Name (Page 3)
         type: string
-        description: Footer heading (e.g. "Thanks for<br>stopping by!")
+        description: Large name heading on page3.html (e.g. "Alexander Long")
+      - name: hero_bio
+        label: Hero Bio (Page 3)
+        type: text
+        description: Bio paragraph on page3.html hero section
+      - name: intro_text
+        label: Intro text (Page 2)
+        type: text
+        description: Main intro paragraph text (appears at top of page2.html)
+      - name: footer_title
+        label: Footer title (Page 2)
+        type: string
+        description: Footer heading on page2.html (e.g. "Thanks for<br>stopping by!")
   - name: projects
     label: Projects Grid
     type: file
