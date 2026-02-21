@@ -223,7 +223,7 @@ main {
 .project-title h1 {
     font-family: 'PP Neue Montreal', sans-serif;
     font-weight: 700;
-    font-size: clamp(3rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
@@ -295,8 +295,12 @@ main {
     margin: 2rem 0 8rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.7rem;
+    gap: 4rem;
     align-items: start;
+}
+
+.intro-left {
+    grid-column: 1;
 }
 
 /* Image + Text Section (for 4th content area) */
@@ -351,7 +355,6 @@ main {
     text-transform: none;
     letter-spacing: 0.02em;
     margin-bottom: 0rem;
-    grid-column: 1;
 }
 
 .intro-title {
@@ -361,14 +364,40 @@ main {
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin: 0;
-    grid-column: 1;
 }
 
 .intro-content {
-    grid-column: 2;
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    margin-top: 1.5rem;
+}
+
+.intro-metadata {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.metadata-tags {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #cc4c22;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+}
+
+.metadata-item {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    font-weight: 400;
+    margin: 0;
+}
+
+.metadata-item strong {
+    font-weight: 700;
 }
 
 .intro-content p {
@@ -386,14 +415,17 @@ main {
         margin: 4rem 0 6rem;
     }
 
-    .intro-label,
-    .intro-title,
-    .intro-content {
+    .intro-left,
+    .intro-metadata {
         grid-column: 1;
     }
 
     .intro-title {
         font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .intro-metadata {
+        margin-top: 2rem;
     }
 
     .image-text-section {
