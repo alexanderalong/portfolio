@@ -26,11 +26,14 @@
     },
     {
       "name": "Project Three",
-      "description": "Brand identity for the 370-acre urban redevelopment project in Toronto.",
+      "description": "A visual identity for a maker zone of the of the Dogwood Arts House & Garden Show.",
       "tags": [
-        "Brand Identity",
-        "Environmental Design"
-      ]
+        "Visual Identity",
+        "Signage",
+        "Print"
+      ],
+      "image": "/images/demozone-3.jpg",
+      "hover_image": "/images/Artboard 1.jpg"
     },
     {
       "name": "Project Four",
