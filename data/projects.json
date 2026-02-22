@@ -21,7 +21,8 @@
         "Industrial Design",
         "Print"
       ],
-      "image": "/images/Brand-Main-Image-V2.jpg"
+      "image": "/images/Brand-Main-Image-V2.jpg",
+      "hover_image": "/images/Adobe Express - file (11).jpg"
     },
     {
       "name": "Project Three",
