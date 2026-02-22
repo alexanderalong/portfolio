@@ -36,12 +36,15 @@
       "hover_image": "/images/Artboard 1.jpg"
     },
     {
-      "name": "Project Four",
-      "description": "Brand identity for a leading organization.",
+      "name": "All City Graffiti Awards",
+      "description": "An event that focuses on the recognition of excellence in graffiti art.",
       "tags": [
-        "Art Direction",
-        "Brand Strategy"
-      ]
+        "Brand Identity",
+        "Motion",
+        "Print"
+      ],
+      "image": "/images/ScreenMockup.jpg",
+      "hover_image": "/images/name Tags.jpg"
     },
     {
       "name": "Project Five",
