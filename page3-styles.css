@@ -1,0 +1,332 @@
+/* Font Faces */
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Reset and Base Styles */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    touch-action: manipulation;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'PP Neue Montreal', sans-serif;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0;
+}
+
+a {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+}
+
+a:active {
+    opacity: 0.7;
+}
+
+hr {
+    background: rgba(0, 0, 0, 0.75);
+    border: 0;
+    height: 1px;
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Fixed Header */
+.header-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 399;
+    padding: 1rem;
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+.header-col-left {
+    grid-column: span 4;
+}
+
+.header-col-center {
+    grid-column: span 4;
+}
+
+.header-col-right {
+    grid-column: span 4;
+    text-align: right;
+}
+
+/* Main Content */
+.content {
+    padding-top: 60px;
+}
+
+.page-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 0;
+}
+
+.page-content {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Column Layouts */
+.column-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    width: 100%;
+}
+
+.col {
+    grid-column: span 4;
+}
+
+.col-1 {
+    grid-column: span 1;
+}
+
+.col-3 {
+    grid-column: span 3;
+}
+
+.col-4 {
+    grid-column: span 4;
+}
+
+.col-8 {
+    grid-column: span 8;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.column-grid-thirds {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.column-grid-wide {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+.col-span-1 {
+    grid-column: span 1;
+}
+
+.col-span-4 {
+    grid-column: span 4;
+}
+
+.col-span-8 {
+    grid-column: span 8;
+}
+
+/* Gallery Grids */
+.gallery-grid {
+    display: grid;
+    width: 100%;
+}
+
+.gallery-grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.gallery-grid.cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    width: 100%;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 0;
+}
+
+/* Slideshow */
+.slideshow {
+    position: relative;
+    width: 100%;
+    cursor: ew-resize;
+}
+
+.slide {
+    width: 100%;
+    height: auto;
+    display: none;
+    transition: opacity 0.2s ease;
+}
+
+.slide.active {
+    display: block;
+}
+
+/* Caption Styling */
+.caption {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: 'PP Neue Montreal', monospace;
+    line-height: 1.15;
+    letter-spacing: 0;
+    margin-top: 0.7em;
+    display: block;
+}
+
+.gallery-item .caption {
+    margin-top: 0.7em;
+}
+
+/* Index Styles */
+.index-header {
+    margin-bottom: 0;
+}
+
+.index-row a {
+    display: block;
+}
+
+/* Footer */
+.footer-fixed {
+    position: relative;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+.footer-col-1 {
+    grid-column: span 4;
+}
+
+.footer-col-2 {
+    grid-column: span 7;
+}
+
+.footer-col-3 {
+    grid-column: span 1;
+    text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    html {
+        font-size: calc(16px * 1.33);
+    }
+
+    .header-content,
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .header-col-left,
+    .header-col-center,
+    .header-col-right,
+    .footer-col-1,
+    .footer-col-2,
+    .footer-col-3 {
+        grid-column: span 1;
+    }
+
+    .header-col-right,
+    .footer-col-3 {
+        text-align: left;
+    }
+
+    .column-row {
+        grid-template-columns: 1fr;
+    }
+
+    .col,
+    .col-1,
+    .col-3,
+    .col-4,
+    .col-8 {
+        grid-column: span 1;
+    }
+
+    .gallery-grid.cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid.cols-6 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .column-grid-thirds {
+        grid-template-columns: 1fr;
+    }
+
+    .column-grid-wide {
+        grid-template-columns: 1fr;
+    }
+
+    .col-span-1,
+    .col-span-4,
+    .col-span-8 {
+        grid-column: span 1;
+    }
+}
+
+/* Selection */
+::selection {
+    background-color: rgba(0, 0, 0, 0.1);
+}

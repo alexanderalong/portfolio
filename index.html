@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,16 +16,13 @@
     </div>
 
     <header>
-        <div class="logo">alexander long</div>
+        <div class="logo"><img src="images/logo.png" alt="Alexander Long"></div>
         <nav>
-            <button id="theme-toggle" aria-label="Toggle dark/light mode">
-                <span class="toggle-slider"></span>
-            </button>
             <ul>
-                <li><a href="#work" class="active">Work</a></li>
-                <li><a href="page2.html">Gallery</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#work" class="active">WORK</a></li>
+                <li><a href="page2.html">GALLERY</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -74,7 +71,13 @@
         </div>
     </main>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>    <script>
+        // Ensure page starts at the top
+        window.scrollTo(0, 0);
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
         // Loading screen animation
         (function() {
             var loadingScreen = document.getElementById('loading-screen');
@@ -278,34 +281,6 @@
             updateProgressBar(); // Initial state
         })();
 
-        // Theme toggle functionality
-        (function() {
-            var themeToggle = document.getElementById('theme-toggle');
-            var html = document.documentElement;
-            
-            // Check for saved theme preference or default to dark
-            var currentTheme = localStorage.getItem('theme') || 'dark';
-            
-            // Apply saved theme on load
-            if (currentTheme === 'light') {
-                html.setAttribute('data-theme', 'light');
-            } else {
-                html.removeAttribute('data-theme');
-            }
-            
-            // Toggle theme on button click
-            themeToggle.addEventListener('click', function() {
-                var theme = html.getAttribute('data-theme');
-                
-                if (theme === 'light') {
-                    html.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    html.setAttribute('data-theme', 'light');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        })();
     </script>
 </body>
 </html>
