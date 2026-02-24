@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Long - Home</title>
+    <link rel="stylesheet" href="homepage-style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div id="custom-cursor">View</div>
+
+    <div id="loading-screen" class="loaded">
+        <div class="loading-icon"></div>
+    </div>
+
+    <header class="header-static">
+        <a href="homepage.html" class="logo"><img src="images/logo.png" alt="Alexander Long"></a>
+        <nav>
+            <ul>
+                <li><a href="page2.html">WORK</a></li>
+                <li><a href="#">GALLERY</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- titleYour homepage content goes here -->
+         <h1>Designer & Photographer Creating Work Spanning Across Print, Digital, and Industrial Experiences.</h1>
+    </main>
+
+    <script>
+        // Page transition on WORK link click
+        (function() {
+            var workLink = document.querySelector('a[href="page2.html"]');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (workLink && loadingScreen) {
+                workLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Start from top (hidden position)
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth; // Trigger reflow
+                    
+                    // Animate down to cover screen
+                    loadingScreen.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'page2.html';
+                    }, 1500);
+                });
+            }
+        })();
+
+        // Custom Cursor with smooth following
+        (function() {
+            var customCursor = document.getElementById('custom-cursor');
+            
+            var cursorPos = { x: 0, y: 0 };
+            var mousePos = { x: 0, y: 0 };
+            var speed = 0.15;
+
+            document.addEventListener('mousemove', function(e) {
+                mousePos.x = e.clientX;
+                mousePos.y = e.clientY;
+            });
+
+            function updateCursor() {
+                cursorPos.x += (mousePos.x - cursorPos.x) * speed;
+                cursorPos.y += (mousePos.y - cursorPos.y) * speed;
+                
+                customCursor.style.transform = 'translate(' + cursorPos.x + 'px, ' + cursorPos.y + 'px) translate(-50%, -50%)';
+                
+                requestAnimationFrame(updateCursor);
+            }
+            updateCursor();
+
+            var navLinks = document.querySelectorAll('nav a');
+            var logo = document.querySelector('.logo');
+            
+            navLinks.forEach(function(link) {
+                link.addEventListener('mouseenter', function() {
+                    customCursor.classList.add('active');
+                });
+
+                link.addEventListener('mouseleave', function() {
+                    customCursor.classList.remove('active');
+                });
+            });
+            
+            if (logo) {
+                logo.addEventListener('mouseenter', function() {
+                    customCursor.classList.add('active');
+                });
+
+                logo.addEventListener('mouseleave', function() {
+                    customCursor.classList.remove('active');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

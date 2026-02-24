@@ -1,0 +1,179 @@
+/* Font Faces */
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PPNeueMontreal-Book.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PP Neue Montreal', sans-serif;
+    background-color: #cc4c22;
+    color: #261b21;
+    line-height: 1.6;
+    cursor: none;
+}
+
+/* Custom Cursor */
+#custom-cursor {
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    font-weight: 700;
+    text-align: center;
+    pointer-events: none;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    will-change: transform;
+    transform-origin: center;
+    mix-blend-mode: difference;
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #261b21;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+    transform: translateY(0);
+}
+
+#loading-screen.loaded {
+    transform: translateY(-100%);
+}
+
+.loading-icon {
+    font-size: 2.5rem;
+    animation: flip 1.5s ease-in-out infinite;
+}
+
+.loading-icon::before {
+    content: '⌛';
+    display: block;
+}
+
+@keyframes flip {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+/* Static Header */
+.header-static {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 5rem;
+    width: 100%;
+    background-color: #cc4c22;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: none;
+}
+
+.logo img {
+    height: 2.5rem;
+    width: auto;
+    display: block;
+    background: transparent;
+    mix-blend-mode: screen;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    position: relative;
+    padding-bottom: 0.25rem;
+    transition: opacity 0.3s ease;
+    letter-spacing: 0.1rem;
+    opacity: 0.9;
+    font-weight: 400;
+    cursor: none;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    opacity: 1;
+}
+
+/* Main Content */
+main {
+    padding: 2rem 5rem;
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+main h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 2rem;
+    max-width: 1400px;
+}

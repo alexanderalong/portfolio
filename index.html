@@ -11,18 +11,21 @@
         <div id="scroll-progress-bar"></div>
     </div>
 
+    <!-- Custom Cursor -->
+    <div id="custom-cursor">View</div>
+
     <div id="loading-screen">
         <div class="loading-icon"></div>
     </div>
 
     <header>
-        <div class="logo"><img src="images/logo.png" alt="Alexander Long"></div>
+        <a href="homepage.html" class="logo"><img src="images/logo.png" alt="Alexander Long"></a>
         <nav>
             <ul>
-                <li><a href="#work" class="active">WORK</a></li>
-                <li><a href="page2.html">GALLERY</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="page2.html">WORK</a></li>
+                <li><a href="#" class="active">GALLERY</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="#">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -236,9 +239,83 @@
                 .catch(function() { /* keep default HTML */ });
         })();
 
+        // Page transition on WORK link click
+        (function() {
+            var workLink = document.querySelector('a[href="page2.html"]');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (workLink && loadingScreen) {
+                workLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Start from top (hidden position)
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth; // Trigger reflow
+                    
+                    // Animate down to cover screen
+                    loadingScreen.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'page2.html';
+                    }, 1500);
+                });
+            }
+        })();
+
+        // Custom Cursor with smooth following
+        (function() {
+            var customCursor = document.getElementById('custom-cursor');
+            
+            var cursorPos = { x: 0, y: 0 };
+            var mousePos = { x: 0, y: 0 };
+            var speed = 0.15;
+
+            document.addEventListener('mousemove', function(e) {
+                mousePos.x = e.clientX;
+                mousePos.y = e.clientY;
+            });
+
+            function updateCursor() {
+                cursorPos.x += (mousePos.x - cursorPos.x) * speed;
+                cursorPos.y += (mousePos.y - cursorPos.y) * speed;
+                
+                customCursor.style.transform = 'translate(' + cursorPos.x + 'px, ' + cursorPos.y + 'px) translate(-50%, -50%)';
+                
+                requestAnimationFrame(updateCursor);
+            }
+            updateCursor();
+
+            var navLinks = document.querySelectorAll('nav a');
+            var logo = document.querySelector('.logo');
+            
+            navLinks.forEach(function(link) {
+                link.addEventListener('mouseenter', function() {
+                    customCursor.classList.add('active');
+                });
+
+                link.addEventListener('mouseleave', function() {
+                    customCursor.classList.remove('active');
+                });
+            });
+            
+            if (logo) {
+                logo.addEventListener('mouseenter', function() {
+                    customCursor.classList.add('active');
+                });
+
+                logo.addEventListener('mouseleave', function() {
+                    customCursor.classList.remove('active');
+                });
+            }
+        })();
+
         // Header show/hide on scroll
         let lastScrollTop = 0;
         const header = document.querySelector('header');
+        const scrollProgress = document.getElementById('scroll-progress');
         const scrollThreshold = 100; // Minimum scroll before hiding header
 
         window.addEventListener('scroll', function() {
@@ -247,15 +324,18 @@
             // Only apply effect after scrolling past threshold
             if (scrollTop > scrollThreshold) {
                 if (scrollTop > lastScrollTop) {
-                    // Scrolling down - hide header
+                    // Scrolling down - hide header and move indicator to top
                     header.classList.add('header-hidden');
+                    scrollProgress.classList.add('at-top');
                 } else {
-                    // Scrolling up - show header
+                    // Scrolling up - show header and move indicator below it
                     header.classList.remove('header-hidden');
+                    scrollProgress.classList.remove('at-top');
                 }
             } else {
                 // Near top of page - always show header
                 header.classList.remove('header-hidden');
+                scrollProgress.classList.remove('at-top');
             }
             
             lastScrollTop = scrollTop;
