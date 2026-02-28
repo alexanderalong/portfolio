@@ -10,7 +10,7 @@
     <!-- Custom Cursor -->
     <div id="custom-cursor">View</div>
 
-    <div id="loading-screen" class="loaded">
+    <div id="loading-screen">
         <div class="loading-icon"></div>
     </div>
 
@@ -19,16 +19,15 @@
         <nav>
             <ul>
                 <li><a href="page2.html">WORK</a></li>
-                <li><a href="#">GALLERY</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="#">CONTACT</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <!-- titleYour homepage content goes here -->
-         <h1>Designer & Photographer Creating Work Spanning Across Print, Digital, and Industrial Experiences.</h1>
+         <h1 class="typing-text" data-text="Designer & Photographer Creating Work Spanning Across Print, Digital, and Industrial Experiences."></h1>
     </main>
 
     <script>
@@ -48,12 +47,12 @@
                     void loadingScreen.offsetWidth; // Trigger reflow
                     
                     // Animate down to cover screen
-                    loadingScreen.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
                     loadingScreen.style.transform = 'translateY(0)';
                     
                     setTimeout(function() {
                         window.location.href = 'page2.html';
-                    }, 1500);
+                    }, 1000);
                 });
             }
         })();
@@ -101,6 +100,114 @@
 
                 logo.addEventListener('mouseleave', function() {
                     customCursor.classList.remove('active');
+                });
+            }
+        })();
+
+        // Typing animation for main heading with pauses
+        (function() {
+            var typingHeading = document.querySelector('.typing-text');
+            
+            if (!typingHeading) return;
+            
+            var headingText = typingHeading.getAttribute('data-text');
+            typingHeading.textContent = '';
+            
+            var headingIndex = 0;
+            var typingSpeed = 70;
+            var pausePositions = [24];
+            var pauseDuration = 800;
+            
+            function typeHeading() {
+                if (headingIndex < headingText.length) {
+                    typingHeading.textContent += headingText.charAt(headingIndex);
+                    headingIndex++;
+                    
+                    // Add pause at specific positions
+                    if (pausePositions.includes(headingIndex)) {
+                        setTimeout(typeHeading, pauseDuration);
+                    } else {
+                        setTimeout(typeHeading, typingSpeed);
+                    }
+                } else {
+                    // Keep cursor blinking for 3 seconds before removing it
+                    setTimeout(function() {
+                        typingHeading.classList.add('done');
+                    }, 3000);
+                }
+            }
+            
+            // Start typing after page loads
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    typeHeading();
+                }, 500);
+            });
+        })();
+
+        // Loading screen animation on page load
+        (function() {
+            var loadingScreen = document.getElementById('loading-screen');
+            var startTime = Date.now();
+            var minLoadTime = 800;
+
+            window.addEventListener('load', function() {
+                var elapsed = Date.now() - startTime;
+                var remaining = Math.max(0, minLoadTime - elapsed);
+
+                setTimeout(function() {
+                    loadingScreen.classList.add('loaded');
+                }, remaining);
+            });
+        })();
+
+        // Page transition for Gallery link
+        (function() {
+            var galleryLink = document.querySelector('a[href="gallery.html"]');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (galleryLink && loadingScreen) {
+                galleryLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'gallery.html';
+                    }, 1000);
+                });
+            }
+        })();
+
+        // Page transition for Logo click
+        (function() {
+            var logoLink = document.querySelector('a.logo');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (logoLink && loadingScreen) {
+                logoLink.addEventListener('click', function(e) {
+                    // Only prevent default if not already on homepage
+                    if (window.location.pathname.indexOf('homepage.html') === -1) {
+                        e.preventDefault();
+                        
+                        loadingScreen.style.transition = 'none';
+                        loadingScreen.style.transform = 'translateY(-100%)';
+                        loadingScreen.classList.remove('loaded');
+                        void loadingScreen.offsetWidth;
+                        
+                        loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                        loadingScreen.style.transform = 'translateY(0)';
+                        
+                        setTimeout(function() {
+                            window.location.href = 'homepage.html';
+                        }, 1000);
+                    }
                 });
             }
         })();

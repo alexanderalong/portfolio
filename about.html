@@ -15,13 +15,12 @@
     </div>
 
     <header class="header-static">
-        <a href="homepage.html" class="logo"><img src="images/logo.png" alt="Alexander Long"></a>
+        <a href="homepage.html" class="logo"><img src="images/a-long-logo.png" alt="Alexander Long"></a>
         <nav>
             <ul>
                 <li><a href="page2.html">WORK</a></li>
-                <li><a href="#">GALLERY</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
                 <li><a href="about.html" class="active">ABOUT</a></li>
-                <li><a href="#">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -33,8 +32,25 @@
             </div>
 
             <div class="about-column">
-                <h3>About Me:</h3>
-                <p>Designer & Photographer creating work spanning across print, digital, and industrial experiences.</p>
+                <h3>About Me</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam. 
+                    Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim. 
+                    Ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores. 
+                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia. 
+                    Numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem ut enim ad minima. 
+                </p>
+                
+                <div class="education-section">
+                    <h4 class="education-label">EDUCATION</h4>
+                    <h2 class="education-school">University of Tennessee, Knoxville</h2>
+                    <p class="education-degree">BFA in Graphic Design</p>
+                </div>
+                
+                <a href="#" class="about-link-button">VIEW RESUME</a>
             </div>
         </section>
     </main>
@@ -56,12 +72,12 @@
                     void loadingScreen.offsetWidth; // Trigger reflow
                     
                     // Animate down to cover screen
-                    loadingScreen.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
                     loadingScreen.style.transform = 'translateY(0)';
                     
                     setTimeout(function() {
                         window.location.href = 'page2.html';
-                    }, 1500);
+                    }, 1000);
                 });
             }
         })();
@@ -109,6 +125,66 @@
 
                 logo.addEventListener('mouseleave', function() {
                     customCursor.classList.remove('active');
+                });
+            }
+
+            // Add hover effect for about link button
+            var aboutButton = document.querySelector('.about-link-button');
+            if (aboutButton) {
+                aboutButton.addEventListener('mouseenter', function() {
+                    customCursor.classList.add('active');
+                });
+
+                aboutButton.addEventListener('mouseleave', function() {
+                    customCursor.classList.remove('active');
+                });
+            }
+        })();
+
+        // Page transition for Gallery link
+        (function() {
+            var galleryLink = document.querySelector('a[href="gallery.html"]');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (galleryLink && loadingScreen) {
+                galleryLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'gallery.html';
+                    }, 1000);
+                });
+            }
+        })();
+
+        // Page transition for Logo click
+        (function() {
+            var logoLink = document.querySelector('a.logo');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (logoLink && loadingScreen) {
+                logoLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'homepage.html';
+                    }, 1000);
                 });
             }
         })();

@@ -19,13 +19,12 @@
     </div>
 
     <header>
-        <a href="homepage.html" class="logo"><img src="images/logo.png" alt="Alexander Long"></a>
+        <a href="homepage.html" class="logo"><img src="images/a-long-logo.png" alt="Alexander Long"></a>
         <nav>
             <ul>
                 <li><a href="page2.html" class="active">WORK</a></li>
-                <li><a href="#">GALLERY</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="#">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -35,10 +34,16 @@
         <!-- Intro Section -->
         <section class="intro">
             <h1 class="name" id="intro-text"><strong>SELECTED WORK</strong></h1>
+            
+            <!-- Work Type Toggle -->
+            <div class="work-toggle">
+                <button class="toggle-btn active" data-type="design">Design</button>
+                <button class="toggle-btn" data-type="photo">Photo</button>
+            </div>
         </section>
 
-        <!-- Projects Grid -->
-        <section class="projects-grid" id="projects-grid">
+        <!-- Design Projects Grid -->
+        <section class="projects-grid design-projects" id="design-projects">
             <article class="project-card">
                 <a href="index.html" class="project-link">
                     <div class="project-image-container">
@@ -155,7 +160,98 @@
             </article>
         </section>
 
+        <!-- Photo Projects Grid -->
+        <section class="projects-grid photo-projects" id="photo-projects" style="display: none;">
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Photo Project One</h3>
+                    <p class="project-description">A stunning photography series capturing urban landscapes.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photography</span>
+                        <span class="tag">Urban</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Photo Project Two</h3>
+                    <p class="project-description">Portrait photography exploring human emotion and connection.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photography</span>
+                        <span class="tag">Portrait</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Photo Project Three</h3>
+                    <p class="project-description">Nature photography documenting natural environments.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photography</span>
+                        <span class="tag">Nature</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Photo Project Four</h3>
+                    <p class="project-description">Commercial photography for brands and products.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photography</span>
+                        <span class="tag">Commercial</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Photo Project Five</h3>
+                    <p class="project-description">Street photography capturing everyday moments.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photography</span>
+                        <span class="tag">Street</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-image-container">
+                    <div class="project-image-placeholder"></div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-name">Photo Project Six</h3>
+                    <p class="project-description">Documentary photography series telling visual stories.</p>
+                    <div class="project-tags">
+                        <span class="tag">Photography</span>
+                        <span class="tag">Documentary</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+
         </main>
+        
+        <footer id="site-footer">
+            <p>&copy; 2026 Alexander Long. All rights reserved.</p>
+        </footer>
     </div>
 
 
@@ -192,12 +288,12 @@
                     void loadingScreen.offsetWidth; // Trigger reflow
                     
                     // Animate down to cover screen
-                    loadingScreen.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
                     loadingScreen.style.transform = 'translateY(0)';
                     
                     setTimeout(function() {
                         window.location.reload();
-                    }, 1500);
+                    }, 1000);
                 });
             }
         })();
@@ -355,10 +451,10 @@
                             loadingScreen.classList.remove('transition-in');
                         }, 10);
                         
-                        // Wait for animation to complete (1.5s transition + buffer) then navigate
+                        // Wait for animation to complete (1s transition + buffer) then navigate
                         setTimeout(function() {
                             window.location.href = destination;
-                        }, 1600);
+                        }, 1100);
                     });
                 });
             }
@@ -390,10 +486,11 @@
             }
             updateCursor();
 
-            // Expand cursor on project image, nav links, and logo hover
+            // Expand cursor on project image, nav links, logo, and toggle buttons
             var imageContainers = document.querySelectorAll('.project-image-container');
             var navLinks = document.querySelectorAll('nav a');
             var logo = document.querySelector('.logo');
+            var workToggleBtns = document.querySelectorAll('.toggle-btn');
             
             imageContainers.forEach(function(container) {
                 container.addEventListener('mouseenter', function() {
@@ -424,6 +521,44 @@
                     customCursor.classList.remove('active');
                 });
             }
+            
+            workToggleBtns.forEach(function(btn) {
+                btn.addEventListener('mouseenter', function() {
+                    customCursor.classList.add('active');
+                });
+
+                btn.addEventListener('mouseleave', function() {
+                    customCursor.classList.remove('active');
+                });
+            });
+        })();
+
+        // Work Type Toggle functionality
+        (function() {
+            var toggleBtns = document.querySelectorAll('.toggle-btn');
+            var designProjects = document.getElementById('design-projects');
+            var photoProjects = document.getElementById('photo-projects');
+            
+            toggleBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var type = btn.getAttribute('data-type');
+                    
+                    // Update active state
+                    toggleBtns.forEach(function(b) {
+                        b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    
+                    // Toggle project visibility
+                    if (type === 'design') {
+                        designProjects.style.display = 'grid';
+                        photoProjects.style.display = 'none';
+                    } else {
+                        designProjects.style.display = 'none';
+                        photoProjects.style.display = 'grid';
+                    }
+                });
+            });
         })();
 
         // Header show/hide on scroll
@@ -473,6 +608,54 @@
             window.addEventListener('scroll', updateProgressBar);
             window.addEventListener('resize', updateProgressBar);
             updateProgressBar();
+        })();
+
+        // Page transition for Gallery link
+        (function() {
+            var galleryLink = document.querySelector('a[href="gallery.html"]');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (galleryLink && loadingScreen) {
+                galleryLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'gallery.html';
+                    }, 1000);
+                });
+            }
+        })();
+
+        // Page transition for Logo click
+        (function() {
+            var logoLink = document.querySelector('a.logo');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (logoLink && loadingScreen) {
+                logoLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'homepage.html';
+                    }, 1000);
+                });
+            }
         })();
 
     </script>

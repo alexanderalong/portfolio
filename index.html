@@ -19,13 +19,12 @@
     </div>
 
     <header>
-        <a href="homepage.html" class="logo"><img src="images/logo.png" alt="Alexander Long"></a>
+        <a href="homepage.html" class="logo"><img src="images/a-long-logo.png" alt="Alexander Long"></a>
         <nav>
             <ul>
                 <li><a href="page2.html">WORK</a></li>
-                <li><a href="#" class="active">GALLERY</a></li>
+                <li><a href="gallery.html" class="active">GALLERY</a></li>
                 <li><a href="about.html">ABOUT</a></li>
-                <li><a href="#">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -255,12 +254,12 @@
                     void loadingScreen.offsetWidth; // Trigger reflow
                     
                     // Animate down to cover screen
-                    loadingScreen.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
                     loadingScreen.style.transform = 'translateY(0)';
                     
                     setTimeout(function() {
                         window.location.href = 'page2.html';
-                    }, 1500);
+                    }, 1000);
                 });
             }
         })();
@@ -359,6 +358,54 @@
             window.addEventListener('scroll', updateProgressBar);
             window.addEventListener('resize', updateProgressBar);
             updateProgressBar(); // Initial state
+        })();
+
+        // Page transition for Gallery link
+        (function() {
+            var galleryLink = document.querySelector('a[href="gallery.html"]');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (galleryLink && loadingScreen) {
+                galleryLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'gallery.html';
+                    }, 1000);
+                });
+            }
+        })();
+
+        // Page transition for Logo click
+        (function() {
+            var logoLink = document.querySelector('a.logo');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (logoLink && loadingScreen) {
+                logoLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'homepage.html';
+                    }, 1000);
+                });
+            }
         })();
 
     </script>

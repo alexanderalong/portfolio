@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Alexander Long</title>
+    <link rel="stylesheet" href="gallery-styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div id="custom-cursor">View</div>
+
+    <div id="loading-screen">
+        <div class="loading-icon"></div>
+    </div>
+
+    <div id="gallery-container"></div>
+
+    <a href="homepage.html" id="home-button">GO HOME
+
+    <script>
+        // Custom Cursor
+        (function() {
+            var customCursor = document.getElementById('custom-cursor');
+            
+            var cursorPos = { x: 0, y: 0 };
+            var mousePos = { x: 0, y: 0 };
+            var speed = 0.15;
+
+            document.addEventListener('mousemove', function(e) {
+                mousePos.x = e.clientX;
+                mousePos.y = e.clientY;
+            });
+
+            function updateCursor() {
+                cursorPos.x += (mousePos.x - cursorPos.x) * speed;
+                cursorPos.y += (mousePos.y - cursorPos.y) * speed;
+                
+                customCursor.style.transform = 'translate(' + cursorPos.x + 'px, ' + cursorPos.y + 'px) translate(-50%, -50%)';
+                
+                requestAnimationFrame(updateCursor);
+            }
+            updateCursor();
+        })();
+
+        // Infinite Parallax Grid
+        (function() {
+            var container = document.getElementById('gallery-container');
+            var items = [];
+            var mouse = { x: 0.5, y: 0.5 };
+            var scroll = { x: 0, y: 0, targetX: 0, targetY: 0 };
+            var isDragging = false;
+            var dragStart = { x: 0, y: 0, scrollX: 0, scrollY: 0 };
+            
+            // Masonry layout with 2rem gaps
+            var gap = 32; // 2rem = 32px
+            var cellSize = 350;
+            var cols = 6;
+            
+            // Wide range of image heights (250-500px) for better gap filling
+            var heights = [
+                280, 420, 340, 480, 360, 440, 320, 460, 380, 420, 
+                300, 450, 370, 430, 350, 470, 390, 410, 360, 440, 
+                330, 460, 380, 420, 350, 450, 370, 430, 360, 470,
+                290, 440, 380, 420, 350, 460, 370, 430, 360, 450,
+                310, 470, 390, 410, 370, 440, 350, 460, 380, 430,
+                320, 450, 360, 430, 390, 460, 370, 420, 350, 440
+            ];
+            
+            var imageData = [];
+            var columnHeights = [];
+            
+            // Initialize column heights
+            for (var i = 0; i < cols; i++) {
+                columnHeights.push(0);
+            }
+            
+            // Place images in masonry layout
+            heights.forEach(function(height) {
+                // Find shortest column
+                var shortestCol = 0;
+                var minHeight = columnHeights[0];
+                
+                for (var c = 1; c < cols; c++) {
+                    if (columnHeights[c] < minHeight) {
+                        minHeight = columnHeights[c];
+                        shortestCol = c;
+                    }
+                }
+                
+                // Place image in shortest column
+                imageData.push({
+                    x: shortestCol * (cellSize + gap),
+                    y: columnHeights[shortestCol],
+                    w: cellSize,
+                    h: height
+                });
+                
+                // Update column height (add gap after each image)
+                columnHeights[shortestCol] += height + gap;
+            });
+            
+            // Calculate tile dimensions - use tallest column and remove trailing gap
+            var tileW = cols * (cellSize + gap);
+            var maxColHeight = Math.max.apply(null, columnHeights);
+            
+            // Equalize columns by filling to exact height
+            for (var colIndex = 0; colIndex < cols; colIndex++) {
+                var currentHeight = columnHeights[colIndex];
+                
+                while (currentHeight < maxColHeight) {
+                    var remainingHeight = maxColHeight - currentHeight;
+                    
+                    // If remaining space is less than gap, fill it completely
+                    if (remainingHeight < gap * 2) {
+                        imageData.push({
+                            x: colIndex * (cellSize + gap),
+                            y: currentHeight,
+                            w: cellSize,
+                            h: remainingHeight
+                        });
+                        currentHeight = maxColHeight;
+                    } else {
+                        // Add a filler with gap
+                        var fillerHeight = Math.min(remainingHeight - gap, 300 + Math.floor(Math.random() * 200));
+                        
+                        imageData.push({
+                            x: colIndex * (cellSize + gap),
+                            y: currentHeight,
+                            w: cellSize,
+                            h: fillerHeight
+                        });
+                        
+                        currentHeight += fillerHeight + gap;
+                    }
+                }
+                
+                columnHeights[colIndex] = maxColHeight;
+            }
+            
+            var tileH = maxColHeight;
+            
+            // Create tiles (2x2 grid for infinite scroll)
+            function createTiles() {
+                for (var tileY = 0; tileY < 2; tileY++) {
+                    for (var tileX = 0; tileX < 2; tileX++) {
+                        imageData.forEach(function(data, i) {
+                            var item = document.createElement('div');
+                            item.className = 'gallery-item';
+                            item.style.width = data.w + 'px';
+                            item.style.height = data.h + 'px';
+                            
+                            var box = document.createElement('div');
+                            box.className = 'placeholder-box';
+                            item.appendChild(box);
+                            
+                            container.appendChild(item);
+                            
+                            items.push({
+                                el: item,
+                                baseX: data.x + (tileX * tileW),
+                                baseY: data.y + (tileY * tileH),
+                                w: data.w,
+                                h: data.h,
+                                offsetX: 0,
+                                offsetY: 0,
+                                ease: 0.3 + Math.random() * 0.4
+                            });
+                        });
+                    }
+                }
+            }
+            
+            createTiles();
+            
+            // Mouse tracking
+            document.addEventListener('mousemove', function(e) {
+                mouse.x = e.clientX / window.innerWidth;
+                mouse.y = e.clientY / window.innerHeight;
+            });
+            
+            // Wheel scrolling
+            document.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                scroll.targetX -= e.deltaX * 0.5;
+                scroll.targetY -= e.deltaY * 0.5;
+            }, { passive: false });
+            
+            // Drag scrolling
+            document.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                dragStart.x = e.clientX;
+                dragStart.y = e.clientY;
+                dragStart.scrollX = scroll.targetX;
+                dragStart.scrollY = scroll.targetY;
+                document.body.style.cursor = 'grabbing';
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+                document.body.style.cursor = '';
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    scroll.targetX = dragStart.scrollX + (e.clientX - dragStart.x);
+                    scroll.targetY = dragStart.scrollY + (e.clientY - dragStart.y);
+                }
+            });
+            
+            // Render loop
+            function render() {
+                // Smooth scroll
+                scroll.x += (scroll.targetX - scroll.x) * 0.08;
+                scroll.y += (scroll.targetY - scroll.y) * 0.08;
+                
+                var winW = window.innerWidth;
+                var winH = window.innerHeight;
+                
+                items.forEach(function(item) {
+                    // Position with scroll only
+                    var posX = item.baseX + scroll.x + item.offsetX;
+                    var posY = item.baseY + scroll.y + item.offsetY;
+                    
+                    // Wrap horizontally
+                    if (posX + item.w < 0) {
+                        item.offsetX += tileW * 2;
+                    } else if (posX > winW) {
+                        item.offsetX -= tileW * 2;
+                    }
+                    
+                    // Wrap vertically
+                    if (posY + item.h < 0) {
+                        item.offsetY += tileH * 2;
+                    } else if (posY > winH) {
+                        item.offsetY -= tileH * 2;
+                    }
+                    
+                    // Apply transform
+                    item.el.style.transform = 'translate(' + posX + 'px, ' + posY + 'px)';
+                });
+                
+                requestAnimationFrame(render);
+            }
+            
+            render();
+        })();
+
+        // Loading screen animation on page load
+        (function() {
+            var loadingScreen = document.getElementById('loading-screen');
+            var startTime = Date.now();
+            var minLoadTime = 800;
+
+            window.addEventListener('load', function() {
+                var elapsed = Date.now() - startTime;
+                var remaining = Math.max(0, minLoadTime - elapsed);
+
+                setTimeout(function() {
+                    loadingScreen.classList.add('loaded');
+                }, remaining);
+            });
+        })();
+
+        // Handle browser back button to go to homepage
+        (function() {
+            // Push a state when the page loads
+            history.pushState(null, null, location.href);
+            
+            window.addEventListener('popstate', function() {
+                // When back button is pressed, redirect to homepage
+                window.location.href = 'homepage.html';
+            });
+        })();
+
+        // Page transition for Home button
+        (function() {
+            var homeButton = document.getElementById('home-button');
+            var loadingScreen = document.getElementById('loading-screen');
+            
+            if (homeButton && loadingScreen) {
+                homeButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    loadingScreen.style.transition = 'none';
+                    loadingScreen.style.transform = 'translateY(-100%)';
+                    loadingScreen.classList.remove('loaded');
+                    void loadingScreen.offsetWidth;
+                    
+                    loadingScreen.style.transition = 'transform 1s cubic-bezier(0.65, 0, 0.35, 1)';
+                    loadingScreen.style.transform = 'translateY(0)';
+                    
+                    setTimeout(function() {
+                        window.location.href = 'homepage.html';
+                    }, 1000);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
