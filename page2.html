@@ -315,7 +315,8 @@
 
         // Load projects data from CMS-editable JSON
         (function loadProjectsData() {
-            var projectsGrid = document.getElementById('projects-grid');
+            // Use the existing Design projects grid as the CMS target
+            var projectsGrid = document.getElementById('design-projects');
             
             fetch('data/projects.json')
                 .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
